@@ -123,12 +123,6 @@ export const updateProductValidator = validate(
   checkSchema(
     {
       name: {
-        notEmpty: {
-          errorMessage: MESSAGE.NAME_Is_REQUIRED,
-        },
-        isString: {
-          errorMessage: MESSAGE.NAME_MUST_BE_A_STRING,
-        },
         custom: {
           options: async (value) => {
             const existing_product = await Product.findOne({ name: value });
@@ -138,23 +132,8 @@ export const updateProductValidator = validate(
         },
         trim: true,
       },
-      image: {
-        notEmpty: {
-          errorMessage: MESSAGE.PRODUCT_IMAGE_IS_REQUIRED,
-        },
-      },
-      type: {
-        notEmpty: {
-          errorMessage: MESSAGE.PRODUCT_TYPE_IS_REQURIRED,
-        },
-        isString: {
-          errorMessage: MESSAGE.PRODUCT_TYPE_MUST_BE_STRING,
-        },
-      },
+
       price: {
-        notEmpty: {
-          errorMessage: MESSAGE.PRODUCT_PRICE_IS_REQUIRED,
-        },
         isInt: {
           options: {
             min: 0,
@@ -164,9 +143,6 @@ export const updateProductValidator = validate(
         },
       },
       count_in_stock: {
-        notEmpty: {
-          errorMessage: MESSAGE.PRODUCT_STOCK_IS_REQUIRED,
-        },
         isInt: {
           errorMessage: MESSAGE.PRODUCT_STOCK_IS_NUMBER,
         },
@@ -178,11 +154,6 @@ export const updateProductValidator = validate(
             max: 5,
           },
           errorMessage: MESSAGE.PRODUCT_RATE_IS_NUMBER,
-        },
-      },
-      description: {
-        isString: {
-          errorMessage: MESSAGE.PRODUCT_DESC_MUST_BE_STRING,
         },
       },
     },

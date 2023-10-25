@@ -91,13 +91,19 @@ export const get_profile = async (user_id) => {
 };
 
 export const change_password = async (user_id, new_password) => {
-  const user = await User.findOneAndUpdate({ _id: new ObjectId(user_id) }, [
-    {
-      $set: {
-        password: hashPassword(new_password),
-        updated_at: "$$NOW",
+  const user = await User.findOneAndUpdate(
+    { _id: new ObjectId(user_id) },
+    [
+      {
+        $set: {
+          password: hashPassword(new_password),
+          updated_at: "$$NOW",
+        },
       },
-    },
-  ]);
+    ],
+    {
+      new: true,
+    }
+  );
   return true;
 };

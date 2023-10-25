@@ -12,10 +12,9 @@ export const product_detail = async (sku) => {
   return product;
 };
 export const update_product = async (sku, payload) => {
-  const product = await Product.findOneAndUpdate(
-    { sku: sku },
-    { $set: { ...payload }, $currentDate: { updated_at: true } }
-  );
+  const product = await Product.findOneAndUpdate({ sku: sku }, payload, {
+    new: true,
+  });
   return product;
 };
 

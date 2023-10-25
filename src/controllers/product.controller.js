@@ -49,4 +49,3 @@ export const getAllProductController = async (req, res) => {
     result,
   });
 };
-// refactor get_all service .

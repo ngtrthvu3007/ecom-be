@@ -1,4 +1,8 @@
+
 # ecom-be
+Visit https://vu-ecom-api.onrender.com/ to get more info and use case
+
+--- DESCRIPTION ---
 This repo just a simple api server for a ecommerce website. And it deployed free with render https://render.com/
 
 domain : https://vu-ecom-api.onrender.com/

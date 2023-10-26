@@ -102,6 +102,7 @@ export const newProductValidator = validate(
         },
       },
       rating: {
+        optional: true,
         isInt: {
           options: {
             min: 0,
@@ -111,6 +112,7 @@ export const newProductValidator = validate(
         },
       },
       description: {
+        optional: true,
         isString: {
           errorMessage: MESSAGE.PRODUCT_DESC_MUST_BE_STRING,
         },
@@ -123,6 +125,7 @@ export const updateProductValidator = validate(
   checkSchema(
     {
       name: {
+        optional: true,
         custom: {
           options: async (value) => {
             const existing_product = await Product.findOne({ name: value });
@@ -134,6 +137,7 @@ export const updateProductValidator = validate(
       },
 
       price: {
+        optional: true,
         isInt: {
           options: {
             min: 0,
@@ -143,11 +147,13 @@ export const updateProductValidator = validate(
         },
       },
       count_in_stock: {
+        optional: true,
         isInt: {
           errorMessage: MESSAGE.PRODUCT_STOCK_IS_NUMBER,
         },
       },
       rating: {
+        optional: true,
         isInt: {
           options: {
             min: 0,

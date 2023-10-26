@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ecom API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        color: #fff;
+        background-color: #1c2833;
+        background-repeat: no-repeat;
+        background-position: top left;
+        background-attachment: fixed;
+        text-indent: 3rem;
+        line-height: 1.3;
+        text-align: left;
+      }
+      h3 {
+        font-family: Arial, sans-serif;
+        color: #fff;
+      }
+      p,
+      div {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: normal;
+        color: #fff;
+      }
+      a {
+        font-family: Arial, sans-serif;
+        color: #12f270;
+      }
+      .method {
+        font-weight: 600;
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+      .blue {
+        color: #0184ff;
+      }
+      .gold {
+        color: #f1da42;
+      }
+      .violet {
+        color: #7053ef;
+      }
+      .red {
+        color: #d4500a;
+      }
+      li {
+        font-family: Arial, sans-serif;
+      }
+      .route {
+        font-size: 16px;
+      }
+      .example {
+        font-size: 14px;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Simple API for Ecommerce</h3>
+    <p style="font-size: 16px">
+      This repo is a simple api server for a ecommerce website. It was created to provide data in a free, simple and
+      fast way for researching and understanding libraries or frameworks on the Client side such as React, Vue, Svelte
+    </p>
+    <p>Repo-url: <a href="https://github.com/ngtrthvu3007/ecom-be"> https://github.com/ngtrthvu3007/ecom-be</a></p>
+    <p>Domain: <a href=" https://vu-ecom-api.onrender.com/">https://vu-ecom-api.onrender.com/</a></p>
+    <p style="font-weight: bold; font-size: 16px; color: #caa80b">routes:</p>
+    <div style="margin-left: 10px">
+      <div class="route">
+        <div style="font-size: 16px; line-height: 1.5">
+          <span style="color: #07c6ab">users: </span>
+          <span>https://vu-ecom-api.onrender.com/users/{path}</span>
+          <p>path:</p>
+          <li>my-profile <span class="method blue">GET</span></li>
+          <li>
+            register <span class="method gold">POST</span> >> params: { *required params [name: string, password:
+            string, confirm_password: string, email: string, phone: string, address: string], *optional [isAdmin:
+            boolean] }
+          </li>
+          <li>login <span class="method gold">POST</span> >> params: { email: string, password: string }</li>
+          <li>
+            update-my-profile <span class="method violet">PUT</span> >> [Authorization]* update only params: { name:
+            string, address: string }
+          </li>
+          <li>
+            change-password <span class="method violet">PUT</span> >> [Authorization]* params: { new_password: string,
+            password: string, confirm_password: string}
+          </li>
+        </div>
+
+        <div style="font-size: 16px; margin-top: 20px; line-height: 1.5">
+          <span style="color: #07c6ab">products: </span>
+          <span>https://vu-ecom-api.onrender.com/products{path}</span>
+          <p>path:</p>
+          <li>/:sku <span class="method blue">GET </span> >> get detail of a product</li>
+          <li>
+            /?{query} <span class="method blue">GET</span> >> get products with query is sort/filter/limit/page >>
+            <span class="example">example: {{domain}}/products?sort=price&sort=desc&filter=sku&filter=ip11</span>
+          </li>
+
+          <li>
+            create <span class="method gold">POST</span> >> [Authorization]* params: { *required params [sku: string,
+            name: string, image: string, type: string, price: int, count_in_stock: number], *optional [rating: number
+            int(1-5),description: string ] }
+          </li>
+          <li>delete/:sku <span class="method red">DELETE</span> >> [Authorization]*</li>
+          <li>
+            update/:sku <span class="method violet">PUT</span> >> [Authorization]* update only params: {*optional [
+            name: string, price: int, count_in_stock: number , rating: number int(1-5) ]}
+          </li>
+        </div>
+
+        <div style="font-size: 16px; margin-top: 20px; line-height: 1.5">
+          <span style="color: #07c6ab">orders: </span>
+          <span>https://vu-ecom-api.onrender.com/orders{path}</span>
+          <p>path:</p>
+          <li>/:id<span class="method blue">GET</span> >> [Authorization]* >> get detail of a order</li>
+          <li>
+            ?{query} <span class="method blue">GET</span> >> [Authorization]* status['pending', 'done', cancel'] >>get
+            orders with query is status >>
+            <span class="example">example: {{domain}}/orders?status=pending</span>
+          </li>
+          <li>
+            create <span class="method gold">POST</span> >> [Authorization]* params: { *required params [address:
+            string, phone: string, paymentMethod: string/default: "cash", products: Array[ Object{ product_id: string,
+            product_amount: int }] ]} create a order
+          </li>
+          <li>
+            /update/:id <span class="method violet">PUT</span> >> [Authorization]* update only params: {*optional [
+            address: string, paymentStatus: boolean, deliveryStatus: string: ['pending', 'shipping', 'done'] ,
+            orderStatus: string : ['pending', 'shipping', 'done'] ]}
+          </li>
+        </div>
+      </div>
+      <div>
+        <div style="margin-top: 60px; font-size: 10px; line-height: 1.2">
+          <h3>For more infomation:</h3>
+          <div>Author: Nguyen Tran The Vu (Vincent)</div>
+          <div>Github: <a href="https://github.com/ngtrthvu3007">https://github.com/ngtrthvu3007</a></div>
+          <div>Email: <a href="mailto:nguyentranthevu@gmail.com"> nguyentranthevu@gmail.com </a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

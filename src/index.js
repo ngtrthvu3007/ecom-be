@@ -27,8 +27,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => {
   res.sendFile(homefile);
 });
-
+app.use(defaultErrorHandler);
 app.listen(port, () => {
   console.log("Server is ready on port: ", port);
 });
-app.use(defaultErrorHandler);

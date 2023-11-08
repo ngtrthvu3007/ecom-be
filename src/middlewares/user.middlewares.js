@@ -23,7 +23,7 @@ export const registerValidator = validate(
             min: 3,
             max: 10,
           },
-          errorMessage: MESSAGE.NAME_LENGTH_MUST_BE_FROM_1_TO_100,
+          errorMessage: MESSAGE.NAME_LENGTH_MUST_BE_FROM_3_TO_10,
         },
       },
       email: {
@@ -45,16 +45,6 @@ export const registerValidator = validate(
         },
       },
       password: {
-        isStrongPassword: {
-          options: {
-            minLength: 1,
-            minLowercase: 1,
-            minUppercase: 1,
-            minNumbers: 1,
-            minSymbols: 1,
-          },
-          errorMessage: MESSAGE.PASSWORD_MUST_BE_STRONG,
-        },
         notEmpty: {
           errorMessage: MESSAGE.PASSWORD_Is_REQUIRED,
         },
@@ -70,27 +60,6 @@ export const registerValidator = validate(
         },
       },
       confirm_password: {
-        isStrongPassword: {
-          options: {
-            minLength: 1,
-            minLowercase: 1,
-            minUppercase: 1,
-            minNumbers: 1,
-            minSymbols: 1,
-          },
-          errorMessage: MESSAGE.CONFIRM_PASSWORD_MUST_BE_STRONG,
-        },
-        notEmpty: {
-          errorMessage: MESSAGE.CONFIRM_PASSWORD_Is_REQUIRED,
-        },
-        isString: { errorMessage: MESSAGE.CONFIRM_PASSWORD_MUST_BE_A_STRING },
-        isLength: {
-          options: {
-            min: 6,
-            max: 50,
-          },
-          errorMessage: MESSAGE.CONFIRM_PASSWORD_LENGTH_MUST_BE_FROM_6_TO_50,
-        },
         custom: {
           options: async (value, { req }) => {
             if (value !== req.body.password) {
@@ -189,7 +158,7 @@ export const updateProfileValidator = validate(
             min: 1,
             max: 100,
           },
-          errorMessage: MESSAGE.NAME_LENGTH_MUST_BE_FROM_1_TO_100,
+          errorMessage: MESSAGE.NAME_LENGTH_MUST_BE_FROM_3_TO_10,
         },
         trim: true,
       },
@@ -208,16 +177,6 @@ export const updateProfileValidator = validate(
 export const changePasswordValidator = validate(
   checkSchema({
     new_password: {
-      isStrongPassword: {
-        options: {
-          minLength: 1,
-          minLowercase: 1,
-          minUppercase: 1,
-          minNumbers: 1,
-          minSymbols: 1,
-        },
-        errorMessage: MESSAGE.PASSWORD_MUST_BE_STRONG,
-      },
       notEmpty: {
         errorMessage: MESSAGE.PASSWORD_Is_REQUIRED,
       },
@@ -233,16 +192,6 @@ export const changePasswordValidator = validate(
       },
     },
     password: {
-      isStrongPassword: {
-        options: {
-          minLength: 1,
-          minLowercase: 1,
-          minUppercase: 1,
-          minNumbers: 1,
-          minSymbols: 1,
-        },
-        errorMessage: MESSAGE.PASSWORD_MUST_BE_STRONG,
-      },
       notEmpty: {
         errorMessage: MESSAGE.PASSWORD_Is_REQUIRED,
       },
@@ -258,27 +207,6 @@ export const changePasswordValidator = validate(
       },
     },
     confirm_password: {
-      isStrongPassword: {
-        options: {
-          minLength: 1,
-          minLowercase: 1,
-          minUppercase: 1,
-          minNumbers: 1,
-          minSymbols: 1,
-        },
-        errorMessage: MESSAGE.CONFIRM_PASSWORD_MUST_BE_STRONG,
-      },
-      notEmpty: {
-        errorMessage: MESSAGE.CONFIRM_PASSWORD_Is_REQUIRED,
-      },
-      isString: { errorMessage: MESSAGE.CONFIRM_PASSWORD_MUST_BE_A_STRING },
-      isLength: {
-        options: {
-          min: 6,
-          max: 50,
-        },
-        errorMessage: MESSAGE.CONFIRM_PASSWORD_LENGTH_MUST_BE_FROM_6_TO_50,
-      },
       custom: {
         options: async (value, { req }) => {
           if (value !== req.body.password) {

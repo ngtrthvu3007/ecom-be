@@ -51,13 +51,15 @@ export const register = async (newUser) => {
     isAdmin,
   });
   if (new_user) {
+    const newUser = (({ password, ...rest }) => rest)(new_user.toObject());
     return {
-      new_user,
+      newUser,
     };
   }
 };
 export const login = async (payload) => {
   const user = await User.findOne({ email: payload.email });
+  const userWithoutPassword = (({ password, ...rest }) => rest)(user.toObject());
   const [access_token, new_refresh_token] = await Promise.all([
     signAccessToken({ user_id: user._id }),
     signRefreshToken({ user_id: user._id }),
@@ -65,7 +67,9 @@ export const login = async (payload) => {
   // cũ: tạm thời không lưu các token ở db mà trả ra client lưu vào local storage -> cần tạo model và lưu token vào db
   // updated: trả token mà không lưu token ở db, để client tự lưu vào local storage
   // thời hạn token là 3 ngày, client tự động check token hết hạn -> xóa token trong local storage -> logout account
+  // updated 12/11/23 login api trả ra 2 token +  profile user
   return {
+    user: userWithoutPassword,
     access_token: access_token,
     refresh_token: new_refresh_token,
   };

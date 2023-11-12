@@ -9,7 +9,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import cors from "cors";
 dotenv.config();
-const app = express();
+
+const app = express(); // run test add " export"
 const port = process.env.PORT || 8080;
 
 databaseConnection();
